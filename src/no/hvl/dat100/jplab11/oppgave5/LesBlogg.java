@@ -21,8 +21,29 @@ public class LesBlogg {
 	private static String BILDE = "BILDE";
 
 	public static Blogg les(String mappe, String filnavn) {
+		Blogg blogg = new Blogg();
 
-		throw new UnsupportedOperationException(TODO.method());
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(new File(mappe, filnavn)));
 
+			int antall = Integer.parseInt(reader.readLine());
+
+			for (int i = 0; i < antall; i++) {
+				if (reader.readLine().contains(TEKST)) {
+					blogg.leggTilUtvid(new Tekst(Integer.parseInt(reader.readLine()), reader.readLine(),
+							reader.readLine(), Integer.parseInt(reader.readLine()), reader.readLine()));
+					
+				} else {
+					blogg.leggTilUtvid(new Bilde(Integer.parseInt(reader.readLine()), reader.readLine(),
+							reader.readLine(), Integer.parseInt(reader.readLine()), reader.readLine(), reader.readLine()));
+				}
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("Det skjedde en feil.");
+		}
+
+		return blogg;
 	}
 }
