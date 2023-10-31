@@ -14,32 +14,20 @@ public class HtmlBlogg extends Blogg {
 
 	private static String HTMLPOSTFIX = "\t</body>\n</html>";
 
-	private static String[] array;
-
 	@Override
 	public String toString() {
-		String str = HTMLPREFIX;
-
-		for (int i = 0; i < super.getAntall(); i++) {
-			array = getSamling()[i].toString().split("\n");
-
-			str += html();
-			
-			str += "<hr>\n";
-		}
-
-		return str + HTMLPOSTFIX;
+		return html();
 	}
 
 	private String html() {
-		String str = "\t\t<h2>" + array[2] + "@" + array[3] + " [" + array[4] + "]<h2>\n";
+		String str = HTMLPREFIX;
 		
-		str += "\t\t<p>" + array[5] + "<p>\n\t\t";
-		
-		if (array[0].contains("BILDE")) {
-		str += "<iframe src=\"" + array[6] + "\" height=600 width=800></iframe>";
+		for (int i = 0; i < super.getAntall(); i++) {
+			str += super.getSamling()[i].toHTML();
+			
+			str += "<hr>\n";
 		}
 		
-		return str;
+		return str + HTMLPOSTFIX;
 	}
 }

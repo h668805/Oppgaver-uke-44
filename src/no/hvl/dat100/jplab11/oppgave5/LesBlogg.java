@@ -29,15 +29,18 @@ public class LesBlogg {
 			int antall = Integer.parseInt(reader.readLine());
 
 			for (int i = 0; i < antall; i++) {
-				if (reader.readLine().contains(TEKST)) {
+				String line = reader.readLine();
+				if (line.startsWith(TEKST)) {
 					blogg.leggTilUtvid(new Tekst(Integer.parseInt(reader.readLine()), reader.readLine(),
 							reader.readLine(), Integer.parseInt(reader.readLine()), reader.readLine()));
 					
-				} else {
+				} else if (line.startsWith(BILDE)) {
 					blogg.leggTilUtvid(new Bilde(Integer.parseInt(reader.readLine()), reader.readLine(),
 							reader.readLine(), Integer.parseInt(reader.readLine()), reader.readLine(), reader.readLine()));
 				}
-
+				else {
+					System.out.println("Det skjedde en feil.");
+				}
 			}
 
 		} catch (Exception e) {
